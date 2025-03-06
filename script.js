@@ -1,61 +1,63 @@
 let res = document.getElementById('input-number')
 
-
 let array = ['']
 function clickNumber(value) {
-
-
-    
-   array[array.length - 1] += value
-   res.innerHTML =array[array.length -1]
-   console.log(array)
-    
+    array[array.length - 1] += value
+    res.innerHTML = array[array.length - 1]
+    console.log(array)
 }
 
 function addition() {
-    if(array[array.length- 1] == "") {
+    if (array[array.length - 1] == "") {
         array[array.length - 1] = ""
     } else {
-    array.push('+','')
-    console.log(array)
+        array.push('+', '')
+        console.log(array)
     }
 }
 function subtraction() {
-    array.push('-','')
-    console.log(array)
-
+    if (array[array.length - 1] == "") {
+        array[array.length - 1] = ""
+    } else {
+        array.push('-', '')
+        console.log(array)
+    }
 }
 function multiplication() {
-    array.push('*','')
+    array.push('*', '')
     console.log(array)
-
 }
 function division() {
-    array.push('/','')
+    array.push('/', '')
     console.log(array)
-
 }
 
 function deleteC() {
     res.innerHTML = ''
-   
+    let filter = array.filter(array => array == '')
+    array = filter
+    array.push("")
     console.log(array)
-   
 }
 
 function operation() {
-    array[1]
-    let operati = ''
-    let lastIndex = array[array.length - 1]
-    for(let i = 0; i < array.length; i++) {
-        operati += array[i]
+    const initialValue = ''
+    const result = array.reduce((acumulator, currentValue) => acumulator + currentValue, initialValue)
+    let evalOperation = eval(result).toString()
+
+    res.innerHTML = evalOperation
+    console.log('result', result)
+    let cleanArray = array.filter(array => array == '')
+    array = cleanArray
+    array.push(evalOperation)
+
+    if (evalOperation == '0') {
+        let cleanArray = array.filter(array => array == '')
+        array = cleanArray
+        array.push('')
     }
-    res.innerHTML = eval(operati)
-    array.push(eval(operati).toString())
+
     console.log(array)
-    let filter = array.filter(array => array != lastIndex) 
-    console.log(filter)
-    console.log(lastIndex)
-    arra
+
 
 }
