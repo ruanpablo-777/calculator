@@ -1,6 +1,5 @@
 let input = document.getElementById('input-number')
 let showExpression = document.getElementById('res')
-
 let array = ['']
 function clickNumber(value) {
     array[array.length - 1] += value
@@ -17,28 +16,27 @@ function addition() {
     }
 }
 function subtraction() {
-    if (array[array.length - 1] == "") {
-        array[array.length - 1] = ""
-    } else {
+    if (input.value == '0' || array[array.length - 1] != "") {
         array.push('-', '')
-        console.log(array)
     }
+        console.log(array)
 }
+
 function multiplication() {
     if (array[array.length - 1] == "") {
         array[array.length - 1] = ""
     } else {
-    array.push('*', '')
-    console.log(array)
+        array.push('*', '')
+        console.log(array)
     }
 }
 function division() {
     if (array[array.length - 1] == "") {
         array[array.length - 1] = ""
     } else {
-    array.push('/', '')
+        array.push('/', '')
 
-    console.log(array)
+        console.log(array)
     }
 }
 
@@ -51,15 +49,31 @@ function deleteC() {
     console.log(array)
 }
 
+function plusMinus() {
+    let lastElementArray = array[array.length - 1]
+    if (Math.sign(lastElementArray) == -1 || Math.sign( array[array.length - 3]) == -1) {
+        array[array.length - 1] = eval((`${lastElementArray} * (- 1)`).toString())
+        input.value = array[array.length - 1]
+        console.log('pstv',lastElementArray)
+        console.log(array[array.length - 3])
+    } else {
+        array[array.length - 1] = eval((`${lastElementArray} * (- 1)`).toString())
+        input.value = array[array.length - 1]
+        console.log('pstv',lastElementArray)
+    }
+}
+
 function percentage() {
     if (array[array.length - 1] == "") {
         array[array.length - 1] = ""
     } else {
-    array.push('/', '100')
-    input.value += '%'
+        let percentageResult = (array[array.length - 1] / 100).toString()
+        array[array.length - 1] = percentageResult
+        input.value = percentageResult
+        console.log('perce', (array[array.length - 1] / 100).toFixed(1))
 
-    console.log(array)
-    console.log('value ',input.value)
+        console.log(array)
+        console.log('value ', input.value)
     }
 }
 
@@ -88,3 +102,4 @@ function operation() {
 function showCalcule(expression) {
     showExpression.innerHTML = expression
 }
+

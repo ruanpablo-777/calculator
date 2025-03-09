@@ -9,38 +9,38 @@
 <body>
     <div id="container">
         <div id="calculator">
-            <div id="res">4</div>
+            <div id="res"></div>
             <div id="input">
                 <input type="text" id="input-number" value="0">
             </div>
             <div class="lineOne">
-                <button class="buttons" value="C" onclick="deleteC()">C</button>
-                <button class="buttons" value="%" onclick="calcular()"><img src="assets/mais-menos.png" alt=""></button>
-                <button class="buttons" value="%" onclick="percentage()">%</button>
-                <button class="buttons" value="&divide;" style="background-color: rgb(255, 183, 40); color: white;" onclick="division()">&divide;</button>
+                <button class="buttons-simbol" value="C" onclick="deleteC()">C</button>
+                <button class="buttons-simbol" value="%" onclick="plusMinus()"><img src="assets/mais-menos.png" alt=""></button>
+                <button class="buttons-simbol" value="%" onclick="percentage()">%</button>
+                <button class="buttons-operator" value="&divide;"  onclick="division()">&divide;</button>
             </div>
             <div class="lineOne">
-                <button class="buttons"  value="7" style="background-color: #333; color: white;" onclick="clickNumber(7)">7</button>
-                <button class="buttons"  value="8" style="background-color: #333; color: white;" onclick="clickNumber(8)">8</button>
-                <button class="buttons"  value="9" style="background-color: #333; color: white;" onclick="clickNumber(9)">9</button>
-                <button class="buttons" value="x" style="background-color: rgb(255, 183, 40); color: white;" onclick="multiplication()">x</button>
+                <button class="buttons"   value="7" onclick="clickNumber(7)">7</button>
+                <button class="buttons"   value="8" onclick="clickNumber(8)">8</button>
+                <button class="buttons"   value="9" onclick="clickNumber(9)">9</button>
+                <button class="buttons-operator"  value="x"  onclick="multiplication()">x</button>
             </div>
             <div class="lineOne">
-                <button class="buttons"  value="4" style="background-color: #333; color: white;" onclick="clickNumber(4)">4</button>
-                <button class="buttons"  value="5" style="background-color: #333; color: white;" onclick="clickNumber(5)">5</button>
-                <button class="buttons"  value="6" style="background-color: #333; color: white;" onclick="clickNumber(6)">6</button>
-                <button class="buttons" value="-" style="background-color: rgb(255, 183, 40); color: white;" onclick="subtraction()">-</button>
+                <button class="buttons"  value="4" onclick="clickNumber(4)">4</button>
+                <button class="buttons"  value="5" onclick="clickNumber(5)">5</button>
+                <button class="buttons"  value="6" onclick="clickNumber(6)">6</button>
+                <button class="buttons-operator" value="-"  onclick="subtraction()">-</button>
             </div>
             <div class="lineOne">
-                <button class="buttons"  value="1" style="background-color: #333; color: white;" onclick="clickNumber(1)">1</button>
-                <button class="buttons"  value="2" style="background-color: #333; color: white;" onclick="clickNumber(2)">2</button>
-                <button class="buttons"  value="3" style="background-color: #333; color: white;" onclick="clickNumber(3)">3</button>
-                <button class="buttons" value="+" style="background-color: rgb(255, 183, 40); color: white;" onclick="addition()">+</button>
+                <button class="buttons"  value="1" onclick="clickNumber(1)">1</button>
+                <button class="buttons"  value="2" onclick="clickNumber(2)">2</button>
+                <button class="buttons"  value="3" onclick="clickNumber(3)">3</button>
+                <button class="buttons-operator" value="+"  onclick="addition()">+</button>
             </div>
             <div class="lineOne">
-                <button class="buttons" id="button-zero" style="background-color: #333; color: white;" value="0" onclick="clickNumber(0)">0</button>
-                <button class="buttons" style="background-color: #333; color: white;" value="." onclick="calcular()">.</button>
-                <button class="buttons" value="=" style="background-color: rgb(255, 183, 40); color: white;" onclick="operation()">=</button>
+                <button class="buttons" id="button-zero" value="0" onclick="clickNumber(0)">0</button>
+                <button class="buttons" value="." onclick="clickNumber('.')">.</button>
+                <button class="buttons-operator" value="="  onclick="operation()">=</button>
                
             </div>
            

@@ -15,7 +15,7 @@ body {
 }
 
 #container {
-    background-color: rgb(0, 0, 0);
+    background-color: #000000;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -63,6 +63,36 @@ body {
 .lineOne {
     display: flex;
 }
+.buttons-simbol {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 3px;
+    font-size: 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D4D4D2;
+
+}
+.buttons-operator {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 3px;
+    font-size: 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF9500;
+    color: white;
+
+}
+.buttons-operator:active {
+    background-color: #CC7A00;
+}
 
 .buttons {
     width: 80px;
@@ -74,7 +104,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #505050;
+    color: white;
 
+}
+.buttons:active {
+    background-color: #737373;
 }
 
 
