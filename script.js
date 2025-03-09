@@ -1,43 +1,34 @@
 let input = document.getElementById('input-number')
 let showExpression = document.getElementById('res')
 let array = ['']
+
 function clickNumber(value) {
+    
     array[array.length - 1] += value
     input.value = array[array.length - 1]
     console.log(array)
+    console.log()
+    document.addEventListener('click', () => {
+        array[0] != ''? document.getElementById('AC').innerHTML = 'C' : document.getElementById('AC').innerHTML = 'AC'
+
+    })
+
 }
 
 function addition() {
-    if (array[array.length - 1] == "") {
-        array[array.length - 1] = ""
-    } else {
-        array.push('+', '')
-        console.log(array)
-    }
+    let lastElementArray = array[array.length - 1]
+    lastElementArray == "" ? lastElementArray = "" : array.push('+', '') 
 }
 function subtraction() {
-    if (input.value == '0' || array[array.length - 1] != "") {
-        array.push('-', '')
-    }
-        console.log(array)
+    input.value == '0' || array[array.length - 1] != "" ?array.push('-', '') : console.log(array)
 }
 
 function multiplication() {
-    if (array[array.length - 1] == "") {
-        array[array.length - 1] = ""
-    } else {
-        array.push('*', '')
-        console.log(array)
-    }
+    array[array.length - 1] == "" ? array[array.length - 1] = "" : array.push('*', '')
+    
 }
 function division() {
-    if (array[array.length - 1] == "") {
-        array[array.length - 1] = ""
-    } else {
-        array.push('/', '')
-
-        console.log(array)
-    }
+    array[array.length - 1] == "" ? array[array.length - 1] = "" : array.push('/', '')
 }
 
 function deleteC() {
@@ -102,4 +93,11 @@ function operation() {
 function showCalcule(expression) {
     showExpression.innerHTML = expression
 }
+
+document.addEventListener('keydown', (e) => {
+   e.preventDefault()
+    
+})
+
+
 
