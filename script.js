@@ -2,17 +2,12 @@ let input = document.getElementById('input-number')
 let showExpression = document.getElementById('res')
 let array = ['']
 
-function clickNumber(value) {
-    
+function clickNumber(value) { 
     array[array.length - 1] += value
     input.value = array[array.length - 1]
-    console.log(array)
-    console.log()
     document.addEventListener('click', () => {
         array[0] != ''? document.getElementById('AC').innerHTML = 'C' : document.getElementById('AC').innerHTML = 'AC'
-
     })
-
 }
 
 function addition() {
@@ -25,8 +20,8 @@ function subtraction() {
 
 function multiplication() {
     array[array.length - 1] == "" ? array[array.length - 1] = "" : array.push('*', '')
-    
 }
+
 function division() {
     array[array.length - 1] == "" ? array[array.length - 1] = "" : array.push('/', '')
 }
@@ -37,7 +32,6 @@ function deleteC() {
     array = filter
     array.push("")
     showCalcule('')
-    console.log(array)
 }
 
 function plusMinus() {
@@ -61,10 +55,6 @@ function percentage() {
         let percentageResult = (array[array.length - 1] / 100).toString()
         array[array.length - 1] = percentageResult
         input.value = percentageResult
-        console.log('perce', (array[array.length - 1] / 100).toFixed(1))
-
-        console.log(array)
-        console.log('value ', input.value)
     }
 }
 
@@ -74,7 +64,6 @@ function operation() {
     let evalOperation = eval(result).toString()
 
     input.value = evalOperation
-    console.log('result', result)
     let cleanArray = array.filter(array => array == '')
     array = cleanArray
     array.push(evalOperation)
@@ -84,20 +73,13 @@ function operation() {
         array = cleanArray
         array.push('')
     }
-
-    console.log(array)
     showCalcule(result)
-
 }
 
-function showCalcule(expression) {
-    showExpression.innerHTML = expression
-}
+function showCalcule(expression) { showExpression.innerHTML = expression }
 
-document.addEventListener('keydown', (e) => {
-   e.preventDefault()
-    
-})
+input.addEventListener('focus', (e) => { e.target.blur() })
+input.addEventListener('keydown', (e) => { e.preventDefault() })
 
 
 
