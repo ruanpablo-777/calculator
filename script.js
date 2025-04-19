@@ -7,6 +7,7 @@ function clickNumber(value) {
     input.value = array[array.length - 1]
     input.style.color = 'white'
     input.style.fontSize = '80px'
+    console.log(array)
 }
 document.addEventListener('click', () => { // manipula o C resetando o valor do input
     array[0] != '' ? document.getElementById('AC').innerHTML = 'C' : document.getElementById('AC').innerHTML = 'AC'
@@ -39,14 +40,19 @@ function deleteC() {
 }
 
 function plusMinus() {
+    let x = new Big("-1")
     let lastElementArray = array[array.length - 1]
     if (Math.sign(lastElementArray) == -1 || Math.sign(array[array.length - 3]) == -1) {
-        array[array.length - 1] = eval((`${lastElementArray} * (- 1)`).toString())
+        array[array.length - 1] = x.times(lastElementArray).toString()
         input.value = array[array.length - 1]
+        console.log(array[array.length - 1] = x.times(lastElementArray).toString())
     } else {
-        array[array.length - 1] = eval((`${lastElementArray} * (- 1)`).toString())
+        array = array.filter(array => array != '' && array !='-')
+        array[array.length - 1] = x.times(lastElementArray).toString()
+
         input.value = array[array.length - 1]
     }
+    console.log(array)
 }
 
 function percentage() {
@@ -65,6 +71,7 @@ function operation() {
             if (array[i] == "/") {
                 let x = new Big(array[i - 1])
                 let y = new Big(array[i + 1])
+                
                 if (y == 0) {
                     array = ['']
                     input.style.color = 'red'

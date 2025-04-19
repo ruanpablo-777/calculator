@@ -1,5 +1,11 @@
-let a = 0
-let b = 2
+const Big = require("big.js")
+let a = new Big(1)
+let b = new Big(-2)
+
+let s = a.neg().toString()
+let m = b.s.toString()
 
 
-console.log(a + b) 
+console.log(s, m)
+
+
