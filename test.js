@@ -1,6 +1,5 @@
-const Big = require('big.js')
-let x = new Big(3)
-let res = x.times(3)
+let a = 0
+let b = 2
 
 
-console.log(res.toString()) 
+console.log(a + b) 

@@ -2,22 +2,19 @@ let input = document.getElementById('input-number')
 let showExpression = document.getElementById('res')
 let array = ['']
 
-
 function clickNumber(value) {
     array[array.length - 1] += value
     input.value = array[array.length - 1]
-    console.log(array)
-
-    document.addEventListener('click', () => { // manipula o C resetando o valor do input
-        array[0] != '' ? document.getElementById('AC').innerHTML = 'C' : document.getElementById('AC').innerHTML = 'AC'
-    })
+    input.style.color = 'white'
+    input.style.fontSize = '80px'
 }
+document.addEventListener('click', () => { // manipula o C resetando o valor do input
+    array[0] != '' ? document.getElementById('AC').innerHTML = 'C' : document.getElementById('AC').innerHTML = 'AC'
+})
 
 function addition() {
     let lastElementArray = array[array.length - 1]
     lastElementArray == "" ? lastElementArray = "" : array.push('+', '')
-    console.log(array[1])
-
 }
 function subtraction() {
     input.value == '0' || array[array.length - 1] != "" ? array.push('-', '') : console.log(array)
@@ -32,6 +29,8 @@ function division() {
 }
 
 function deleteC() {
+    input.style.color = 'white'
+    input.style.fontSize = '80px'
     input.value = '0'
     let filter = array.filter(array => array == '')
     array = filter
@@ -44,12 +43,9 @@ function plusMinus() {
     if (Math.sign(lastElementArray) == -1 || Math.sign(array[array.length - 3]) == -1) {
         array[array.length - 1] = eval((`${lastElementArray} * (- 1)`).toString())
         input.value = array[array.length - 1]
-        console.log('pstv', lastElementArray)
-        console.log(array[array.length - 3])
     } else {
         array[array.length - 1] = eval((`${lastElementArray} * (- 1)`).toString())
         input.value = array[array.length - 1]
-        console.log('pstv', lastElementArray)
     }
 }
 
@@ -64,78 +60,56 @@ function percentage() {
 }
 
 function operation() {
-    console.log(array)
-    for(let i = 0; i < array.length; i++) {
-        if(array[i] == "/" || array[i] == "*") {
-            let x = new Big(array[i-1])
-            let y = new Big(array[i+1])
-            let resul = x.div(y)
+    while (array.length > 1) {
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] == "/") {
+                let x = new Big(array[i - 1])
+                let y = new Big(array[i + 1])
+                if (y == 0) {
+                    array = ['']
+                    input.style.color = 'red'
+                    input.style.fontSize = '30px'
+                    input.value = "Can't divide by 0"
+                    showCalcule('')
+                    return
+                }
+                let resul = x.div(y)
+                let remove = array.splice(i - 1, 3)
+                array.splice(i - 1, 0, resul.toString())
 
-            console.log("res",array[i-1], array[i], array[i+1])
-            console.log(array[i])
-            let remove = array.splice(i-1,3)
-            console.log(remove)
-            console.log("resul", resul.toString())
-            array.splice(i-1, 0, resul.toString())
+            } if (array[i] == "*") {
+                let x = new Big(array[i - 1])
+                let y = new Big(array[i + 1])
+                let resul = x.times(y)
+
+                let remove = array.splice(i - 1, 3)
+                array.splice(i - 1, 0, resul.toString())
+            }
         }
-        else if(array[i] == "*") {
-            let x = new Big(array[i-1])
-            let y = new Big(array[i+1])
-            let resul = x.times(y)
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] == "-") {
+                let x = new Big(array[i - 1])
+                let y = new Big(array[i + 1])
+                let resul = x.minus(y)
 
-            console.log("res",array[i-1], array[i], array[i+1])
-            console.log(array[i])
-            let remove = array.splice(i-1,3)
-            console.log(remove)
-            console.log("resul", resul.toString())
-            array.splice(i-1, 0, resul.toString())
+                let remove = array.splice(i - 1, 3)
+                array.splice(i - 1, 0, resul.toString())
+
+            } if (array[i] == "+") {
+                let x = new Big(array[i - 1])
+                let y = new Big(array[i + 1])
+                let resul = x.plus(y).toString()
+
+                let remove = array.splice(i - 1, 3)
+                array.splice(i - 1, 0, resul)
+            }
         }
-        else if(array[i] == "-") {
-            let x = new Big(array[i-1])
-            let y = new Big(array[i+1])
-            let resul = x.minus(y)
-
-            console.log("res",array[i-1], array[i], array[i+1])
-            console.log(array[i])
-            let remove = array.splice(i-1,3)
-            console.log(remove)
-            console.log("resul", resul.toString())
-            array.splice(i-1, 0, resul.toString())
-        }
-        else if(array[i] == "+") {
-            let x = new Big(array[i-1])
-            let y = new Big(array[i+1])
-            let resul = x.plus(y)
-
-            console.log("res",array[i-1], array[i], array[i+1])
-            console.log(array[i])
-            let remove = array.splice(i-1,3)
-            console.log(remove)
-            console.log("resul", resul.toString())
-            array.splice(i-1, 0, resul.toString())
-            console.log(resul.toString())
-    
-        }
-    } 
-    console.log(array)
-    
-    const initialValue = ''
-    const result = array.reduce((acumulator, currentValue) => acumulator + currentValue, initialValue)
-    input.value = result
-    let cleanArray = array.filter(array => array == '')
-    array = cleanArray
-    array.push(array)
-
-    if (array == '0') {
-        let cleanArray = array.filter(array => array == '')
-        array = cleanArray
-        array.push('')
     }
+    input.value = array
     showCalcule(result)
 }
 
 function showCalcule(expression) { showExpression.innerHTML = expression }
-
 
 // Prevent keyboard on mobile
 input.addEventListener("keydown", (e) => {
